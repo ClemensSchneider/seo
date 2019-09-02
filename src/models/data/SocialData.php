@@ -68,6 +68,13 @@ class SocialData extends BaseObject
 			unset($config['image']);
 		}
 
+		// see https://github.com/ethercreative/seo/issues/247
+    if (!array_key_exists('imageId', $config) && array_key_exists('image', $fallback))
+    {
+      $config['imageId'] = $fallback['image'];
+      unset($fallback['image']);
+    }
+
 		parent::__construct($config);
 	}
 
